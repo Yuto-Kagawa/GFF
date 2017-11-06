@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour {
-
-    public float vector = 1;
+public class Trick_Light : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        Invoke("DestroyWin", 1000f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.position += new Vector3(0, 0, -1);
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Destroy(gameObject);
+        }
 	}
 }
