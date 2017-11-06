@@ -138,6 +138,8 @@
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\TimedObjectDestructor.cs" />
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\WaypointProgressTracker.cs" />
+    <Compile Include="Assets\Script\Destroy.cs" />
+    <Compile Include="Assets\Script\Move.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Material\Standard Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
