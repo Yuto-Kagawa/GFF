@@ -13,6 +13,11 @@ public class X_Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        this.transform.position += new Vector3(0, 0, -1);
+
+        if (Input.GetKeyDown(KeyCode.Z)|| Input.GetKeyDown(KeyCode.X))
+        {
+            this.transform.position += new Vector3(0, 0, -1);
+        }
+           
 	}
 }
