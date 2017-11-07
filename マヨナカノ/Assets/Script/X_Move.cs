@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class X_Move : MonoBehaviour {
-
+public class X_Move : MonoBehaviour
+{
     public float vector = 1;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+	void Update ()
+    {
+        //物体Xの移動条件
+        //今はキー入力で回しているので条件文を変更する
         if (Input.GetKeyDown(KeyCode.Z)|| Input.GetKeyDown(KeyCode.X))
         {
             this.transform.position += new Vector3(0, 0, -1);
-        }
-           
+        } 
+        
+              
 	}
 }
