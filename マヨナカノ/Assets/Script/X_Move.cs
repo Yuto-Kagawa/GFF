@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class X_Move : MonoBehaviour
 {
-    public float vector = 1;
+    Vector3 PlayerPos;
+    Vector3 X_Pos;
+    public bool XFlag;
 
 	void Start ()
     {
-		
+        XFlag = false;
 	}
 
 	void Update ()
     {
-        //物体Xの移動条件
-        //今はキー入力で回しているので条件文を変更する
-        if (Input.GetKeyDown(KeyCode.Z)|| Input.GetKeyDown(KeyCode.X))
+        X_Pos = transform.position;//物体Xの現在の位置を代入する   
+
+        if (X_Pos.z <= 35)
         {
-            this.transform.position += new Vector3(0, 0, -1);
-        } 
-        
-              
-	}
+            Destroy(gameObject);
+            Debug.Log("物体X消去");
+        }
+    }
 }
