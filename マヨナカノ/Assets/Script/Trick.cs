@@ -23,6 +23,8 @@ public class Trick : MonoBehaviour
     {
         PlayerPos = transform.position;             //変数PlayerPosに現在の位置を代入する
 
+        //仕掛け1
+        //不気味な音を流す
         if (PlayerPos.x > 47 && PlayerPos.z > 50)   //主人公の位置がX=30,Z=50なら
         {
             Debug.Log("不気味な音流す");
@@ -36,6 +38,7 @@ public class Trick : MonoBehaviour
         }
 
         //仕掛け2
+        //物体Xが前を通る
         if (PlayerPos.x > 120)//主人公がX座標＞120なら
         {
             Debug.Log("フラグを変更");
@@ -54,9 +57,12 @@ public class Trick : MonoBehaviour
         //}
 
             //仕掛け3
-            if (Input.GetKeyDown(KeyCode.Z))
+            //懐中電灯の光が消える
+            //友人が消える
+            if (PlayerPos.x > 150)
         {
-            Destroy(gameObject);
+            GameObject FlashLight = GameObject.FindGameObjectWithTag("FlashLight");
+            Destroy(FlashLight);
         }
     }
 }
