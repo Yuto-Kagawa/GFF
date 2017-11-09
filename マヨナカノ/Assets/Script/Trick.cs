@@ -10,6 +10,9 @@ public class Trick : MonoBehaviour
     bool X_Flag;                    //物体Xを移動させるかどうか
     int FlashLightDeleteTime;       //懐中電灯の光を消してる時間
 
+    public X_Move X;
+    public Trick_Light FlashLight;
+
     // Use this for initialization
     void Start ()
     {
@@ -23,89 +26,36 @@ public class Trick : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        PlayerPos = transform.position;             //変数PlayerPosに現在の位置を代入する
+        PlayerPos = transform.position;                      //変数PlayerPosに現在の位置を代入する
         GameObject X = GameObject.FindGameObjectWithTag("X");//"X"というタグを付けているオブジェクトを探す
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
         //仕掛け1
         //不気味な音を流す
-        if (PlayerPos.x > 47 && PlayerPos.z > 50)   //主人公の位置がX=30,Z=50なら
+        if (other.gameObject.tag == "Trick_EerieSound")   //主人公の位置がX=30,Z=50なら
         {
             Debug.Log("不気味な音流す");
-            SoundFagCount += 1;                     //カウントを足す
-        }
-
-        if (SoundFagCount == 1)
-        {
             EerieSound.PlayOneShot(EerieSound.clip);//不気味な音を再生
-            SoundFagCount += 1;                     //カウントを増やし以降は流さない
         }
-
         //仕掛け2
         //物体Xが前を通る
-        if (PlayerPos.x > 100)//主人公がX座標＞100なら
-        {
-            Debug.Log("フラグを変更");
-            //X_Count += 1;
-            X_Flag = true;
-        }
-        if (X_Flag==true)
-        {
+        else if (other.gameObject.tag=="Trick_X")
+        { 
             Debug.Log("物体X移動開始");
-           // GameObject X = GameObject.FindGameObjectWithTag("X");//"X"というタグを付けているオブジェクトを探す
-            X.transform.position += new Vector3(0, 0, -1);       //"X"のタグが付いているオブジェクトを移動させる
-           // X_Count += 1;                                        //カウントを足す
+            X.XFlag = true;
         }
-        //if (X.transform.position.z <= 35)s
-        //{
-        //    Destroy(X);
-        //    Debug.Log("物体X消去");
-        //}
-
         //仕掛け3
         //懐中電灯の光が消える
         //友人が消える
-        if (PlayerPos.x > 150)
+        else if (other.gameObject.tag == "Trick_Delete")
         {
-            if (FlashLightDeleteTime < 10)
-            {
-                GameObject FlashLight = GameObject.FindGameObjectWithTag("FlashLight");//"FlashLight"というタグを付けているオブジェクトを探す
-                Destroy(FlashLight);//"FlashLight"がついているオブジェクトを削除
-                Debug.Log("光消去");
-                FlashLightDeleteTime += 1;
-            }
-            else
-            {
-                GameObject FlashLight = GameObject.FindGameObjectWithTag("FlashLight");//"FlashLight"というタグを付けているオブジェクトを探す
-               //Instantiate(FlashLight);
-                Debug.Log("光再度");
-            }
+            FlashLight.FlashLightFlag = true;
         }
     }
+
+    
 }
 
-////仕掛け1
-//void Trick_EerieSound()
-//{
-//    if (PlayerPos.x > 47 && PlayerPos.z > 50)//主人公の位置がX=30,Z=50なら
-//    {
-//        Debug.Log("不気味な音流す");
-//        SoundFagCount += 1;//カウントを足す
-//    }
 
-//    if (SoundFagCount == 1)
-//    {
-//        EerieSound.PlayOneShot(EerieSound.clip);//不気味な音を再生
-//        SoundFagCount += 1;//カウントを増やし以降は流さない
-//    }
-//}
-
-//仕掛け2
-//void X()
-//{
-//    X_Pos = X.transform.position;//物体Xの現在の位置を代入する   
-
-//    if (X_Pos.z <= 35)
-//    {
-//        Destroy(gameObject);
-//        Debug.Log("物体X消去");
-//    }
-//}
