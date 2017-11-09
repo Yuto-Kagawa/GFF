@@ -7,8 +7,8 @@ public class Trick : MonoBehaviour
     Vector3 PlayerPos;              //主人公の現在の位置を入れる変数
     public AudioSource EerieSound;  //不気味な音
     int SoundFagCount;              //音を流すためのカウント(1の時は流す、それ以外は流さない)
-    int X_Count;
-    bool X_Flag;
+    bool X_Flag;                    //物体Xを移動させるかどうか
+    int FlashLightDeleteTime;       //懐中電灯の光を消してる時間
 
     // Use this for initialization
     void Start ()
@@ -16,15 +16,15 @@ public class Trick : MonoBehaviour
         EerieSound = GetComponent<AudioSource>();//音を取得
         SoundFagCount = 0;
         Invoke("DestroyWin", 1000f);
-        X_Count = 0;
         X_Flag=false;
+        FlashLightDeleteTime = 0;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         PlayerPos = transform.position;             //変数PlayerPosに現在の位置を代入する
-
+        GameObject X = GameObject.FindGameObjectWithTag("X");//"X"というタグを付けているオブジェクトを探す
         //仕掛け1
         //不気味な音を流す
         if (PlayerPos.x > 47 && PlayerPos.z > 50)   //主人公の位置がX=30,Z=50なら
@@ -41,7 +41,7 @@ public class Trick : MonoBehaviour
 
         //仕掛け2
         //物体Xが前を通る
-        if (PlayerPos.x > 120)//主人公がX座標＞120なら
+        if (PlayerPos.x > 100)//主人公がX座標＞100なら
         {
             Debug.Log("フラグを変更");
             //X_Count += 1;
@@ -50,13 +50,13 @@ public class Trick : MonoBehaviour
         if (X_Flag==true)
         {
             Debug.Log("物体X移動開始");
-            GameObject X = GameObject.FindGameObjectWithTag("X");//"X"というタグを付けているオブジェクトを探す
+           // GameObject X = GameObject.FindGameObjectWithTag("X");//"X"というタグを付けているオブジェクトを探す
             X.transform.position += new Vector3(0, 0, -1);       //"X"のタグが付いているオブジェクトを移動させる
            // X_Count += 1;                                        //カウントを足す
         }
-        //if (X.transform.position.z <= 35)
+        //if (X.transform.position.z <= 35)s
         //{
-        //    Destroy(gameObject);
+        //    Destroy(X);
         //    Debug.Log("物体X消去");
         //}
 
@@ -65,8 +65,19 @@ public class Trick : MonoBehaviour
         //友人が消える
         if (PlayerPos.x > 150)
         {
-            GameObject FlashLight = GameObject.FindGameObjectWithTag("FlashLight");//"FlashLight"というタグを付けているオブジェクトを探す
-            Destroy(FlashLight);                                                   //"FlashLight"がついているオブジェクトを削除
+            if (FlashLightDeleteTime < 10)
+            {
+                GameObject FlashLight = GameObject.FindGameObjectWithTag("FlashLight");//"FlashLight"というタグを付けているオブジェクトを探す
+                Destroy(FlashLight);//"FlashLight"がついているオブジェクトを削除
+                Debug.Log("光消去");
+                FlashLightDeleteTime += 1;
+            }
+            else
+            {
+                GameObject FlashLight = GameObject.FindGameObjectWithTag("FlashLight");//"FlashLight"というタグを付けているオブジェクトを探す
+               //Instantiate(FlashLight);
+                Debug.Log("光再度");
+            }
         }
     }
 }
