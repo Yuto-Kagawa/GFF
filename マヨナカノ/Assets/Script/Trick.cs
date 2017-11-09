@@ -7,7 +7,8 @@ public class Trick : MonoBehaviour
     Vector3 PlayerPos;              //主人公の現在の位置を入れる変数
     public AudioSource EerieSound;  //不気味な音
     int SoundFagCount;              //音を流すためのカウント(1の時は流す、それ以外は流さない)
-    bool XFlag;                     //物体Xを移動させるかどうか
+    int X_Count;
+    bool X_Flag;
 
     // Use this for initialization
     void Start ()
@@ -15,7 +16,8 @@ public class Trick : MonoBehaviour
         EerieSound = GetComponent<AudioSource>();//音を取得
         SoundFagCount = 0;
         Invoke("DestroyWin", 1000f);
-        XFlag = false;
+        X_Count = 0;
+        X_Flag=false;
     }
 	
 	// Update is called once per frame
@@ -28,13 +30,13 @@ public class Trick : MonoBehaviour
         if (PlayerPos.x > 47 && PlayerPos.z > 50)   //主人公の位置がX=30,Z=50なら
         {
             Debug.Log("不気味な音流す");
-            SoundFagCount += 1;//カウントを足す
+            SoundFagCount += 1;                     //カウントを足す
         }
 
         if (SoundFagCount == 1)
         {
             EerieSound.PlayOneShot(EerieSound.clip);//不気味な音を再生
-            SoundFagCount += 1;//カウントを増やし以降は流さない
+            SoundFagCount += 1;                     //カウントを増やし以降は流さない
         }
 
         //仕掛け2
@@ -42,27 +44,29 @@ public class Trick : MonoBehaviour
         if (PlayerPos.x > 120)//主人公がX座標＞120なら
         {
             Debug.Log("フラグを変更");
-            XFlag = true;
+            //X_Count += 1;
+            X_Flag = true;
         }
-        if (XFlag == true)
+        if (X_Flag==true)
         {
             Debug.Log("物体X移動開始");
             GameObject X = GameObject.FindGameObjectWithTag("X");//"X"というタグを付けているオブジェクトを探す
-            X.transform.position += new Vector3(0, 0, -2);       //"X"のタグが付いているオブジェクトを移動させる
+            X.transform.position += new Vector3(0, 0, -1);       //"X"のタグが付いているオブジェクトを移動させる
+           // X_Count += 1;                                        //カウントを足す
         }
         //if (X.transform.position.z <= 35)
         //{
-        //        Destroy(gameObject);
-        //        Debug.Log("物体X消去");
+        //    Destroy(gameObject);
+        //    Debug.Log("物体X消去");
         //}
 
-            //仕掛け3
-            //懐中電灯の光が消える
-            //友人が消える
-            if (PlayerPos.x > 150)
+        //仕掛け3
+        //懐中電灯の光が消える
+        //友人が消える
+        if (PlayerPos.x > 150)
         {
-            GameObject FlashLight = GameObject.FindGameObjectWithTag("FlashLight");
-            Destroy(FlashLight);
+            GameObject FlashLight = GameObject.FindGameObjectWithTag("FlashLight");//"FlashLight"というタグを付けているオブジェクトを探す
+            Destroy(FlashLight);                                                   //"FlashLight"がついているオブジェクトを削除
         }
     }
 }
