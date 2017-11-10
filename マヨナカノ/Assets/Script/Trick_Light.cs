@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Trick_Light : MonoBehaviour
 {
-    public float FlashLightDeleteTime;       //懐中電灯の光を消してる時間
+    public float FlashLightDeleteTime;   //懐中電灯の光を消してる時間
     public GameObject FlashLight;
-    public bool FlashLightFlag;
-
+    public bool FlashLightFlag;         //懐中電灯の光を付けるかどうか
 
     // Use this for initialization
     void Start()
@@ -29,10 +28,10 @@ public class Trick_Light : MonoBehaviour
             }
             else
             {
-                FlashLight.SetActive(true);                                            //オブジェクトを非アクティブにする
-                FlashLight.GetComponent<Light>().intensity = 5.0f;                     //ライトの強さを0.0にする
+                FlashLight.SetActive(true);                       //オブジェクトをアクティブにする
+                FlashLight.GetComponent<Light>().intensity = 5.0f;//ライトの強さを5.0にする
                 Debug.Log("光再度");
             }
-        }   
+        }
     }
 }

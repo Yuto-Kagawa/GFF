@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Homing : MonoBehaviour
+public class Firend : MonoBehaviour
 {
     // Use this for initialization
     void Start ()

@@ -11,14 +11,14 @@ public class Trick : MonoBehaviour
     int FlashLightDeleteTime;       //懐中電灯の光を消してる時間
 
     public X_Move X;
-    public Trick_Light FlashLight;
+    public Trick_Light FlashLight;//"Trick_Delete.cs"のGameObject FlashLightを継承
+    //public Trick_LIght FriendDeleteFlag;
 
     // Use this for initialization
     void Start ()
     {
         EerieSound = GetComponent<AudioSource>();//音を取得
         SoundFagCount = 0;
-        Invoke("DestroyWin", 1000f);
         X_Flag=false;
         FlashLightDeleteTime = 0;
     }
@@ -34,14 +34,14 @@ public class Trick : MonoBehaviour
     {
         //仕掛け1
         //不気味な音を流す
-        if (other.gameObject.tag == "Trick_EerieSound")   //主人公の位置がX=30,Z=50なら
+        if (other.gameObject.tag == "Trick_EerieSound")   //タグ"Trick_EerieSound"に当たれば
         {
             Debug.Log("不気味な音流す");
             EerieSound.PlayOneShot(EerieSound.clip);//不気味な音を再生
         }
         //仕掛け2
         //物体Xが前を通る
-        else if (other.gameObject.tag=="Trick_X")
+        else if (other.gameObject.tag=="Trick_X")//タグ"Trick_X"に当たれば
         { 
             Debug.Log("物体X移動開始");
             X.XFlag = true;
@@ -49,9 +49,10 @@ public class Trick : MonoBehaviour
         //仕掛け3
         //懐中電灯の光が消える
         //友人が消える
-        else if (other.gameObject.tag == "Trick_Delete")
+        else if (other.gameObject.tag == "Trick_Delete")//タグ"Trick_Delete"に当たれば
         {
             FlashLight.FlashLightFlag = true;
+            
         }
     }
 
