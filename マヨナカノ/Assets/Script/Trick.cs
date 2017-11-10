@@ -8,11 +8,10 @@ public class Trick : MonoBehaviour
     public AudioSource EerieSound;  //不気味な音
     int SoundFagCount;              //音を流すためのカウント(1の時は流す、それ以外は流さない)
     bool X_Flag;                    //物体Xを移動させるかどうか
-    int FlashLightDeleteTime;       //懐中電灯の光を消してる時間
-
     public X_Move X;
-    public Trick_Light FlashLight;//"Trick_Delete.cs"のGameObject FlashLightを継承
-    //public Trick_LIght FriendDeleteFlag;
+    int FlashLightDeleteTime;       //懐中電灯の光を消してる時間
+    public Trick_Light FlashLight;  //Trick_LightクラスのGameObject FlashLightを継承
+    public Stalker SK;
 
     // Use this for initialization
     void Start ()
@@ -36,14 +35,14 @@ public class Trick : MonoBehaviour
         //不気味な音を流す
         if (other.gameObject.tag == "Trick_EerieSound")   //タグ"Trick_EerieSound"に当たれば
         {
-            Debug.Log("不気味な音流す");
+            //Debug.Log("不気味な音流す");
             EerieSound.PlayOneShot(EerieSound.clip);//不気味な音を再生
         }
         //仕掛け2
         //物体Xが前を通る
         else if (other.gameObject.tag=="Trick_X")//タグ"Trick_X"に当たれば
         { 
-            Debug.Log("物体X移動開始");
+            //Debug.Log("物体X移動開始");
             X.XFlag = true;
         }
         //仕掛け3
@@ -51,8 +50,15 @@ public class Trick : MonoBehaviour
         //友人が消える
         else if (other.gameObject.tag == "Trick_Delete")//タグ"Trick_Delete"に当たれば
         {
-            FlashLight.FlashLightFlag = true;
-            
+            FlashLight.FlashLightFlag = true; 
+        }
+        //仕掛け4
+        //後ろからストーカー
+        else if(other.gameObject.tag== "Trick_Stalker")
+        {
+            //Debug.Log("ストーカーグラぐ");
+            SK.StalkerFlag = true;
+            SK.gameObject.SetActive(true);
         }
     }
 

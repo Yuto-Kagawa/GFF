@@ -22,7 +22,7 @@ public class Trick_Light : MonoBehaviour
         {
             if (FlashLightDeleteTime < 10f)
             {
-                Debug.Log("光消去");
+                //Debug.Log("光消去");
                 FlashLightDeleteTime += Time.deltaTime;
                 gameObject.GetComponent<Light>().intensity = 0.0f;//ライトの強さを0.0にする
             }
@@ -30,7 +30,7 @@ public class Trick_Light : MonoBehaviour
             {
                 FlashLight.SetActive(true);                       //オブジェクトをアクティブにする
                 FlashLight.GetComponent<Light>().intensity = 5.0f;//ライトの強さを5.0にする
-                Debug.Log("光再度");
+                //Debug.Log("光再度");
             }
         }
     }

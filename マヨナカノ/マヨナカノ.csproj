@@ -139,8 +139,9 @@
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\WaypointProgressTracker.cs" />
     <Compile Include="Assets\Script\Firend.cs" />
+    <Compile Include="Assets\Script\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Script\Stalker.cs" />
     <Compile Include="Assets\Script\Trick.cs" />
-    <Compile Include="Assets\Script\Trick_Delete.cs" />
     <Compile Include="Assets\Script\Trick_EerieSound.cs" />
     <Compile Include="Assets\Script\Trick_Light.cs" />
     <Compile Include="Assets\Script\X_Move.cs" />
