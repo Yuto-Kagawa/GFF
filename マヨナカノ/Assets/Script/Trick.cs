@@ -13,6 +13,7 @@ public class Trick : MonoBehaviour
     public Trick_Light FlashLight;  //Trick_LightクラスのGameObject FlashLightを継承
     public Stalker SK;
 
+    bool GameOverFlag;
     // Use this for initialization
     void Start ()
     {
@@ -20,13 +21,13 @@ public class Trick : MonoBehaviour
         SoundFagCount = 0;
         X_Flag=false;
         FlashLightDeleteTime = 0;
+        GameOverFlag = false;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        PlayerPos = transform.position;                      //変数PlayerPosに現在の位置を代入する
-        GameObject X = GameObject.FindGameObjectWithTag("X");//"X"というタグを付けているオブジェクトを探す
+        PlayerPos = transform.position;//変数PlayerPosに現在の位置を代入する
     }
 
     void OnTriggerEnter(Collider other)
@@ -59,6 +60,12 @@ public class Trick : MonoBehaviour
             //Debug.Log("ストーカーグラぐ");
             SK.StalkerFlag = true;
             SK.gameObject.SetActive(true);
+        }
+        //ストーカーに当たればゲームオーバー
+        else if(other.gameObject.tag=="Stalker")
+        {
+            Debug.Log("ゲームオーバーフラグ");
+            GameOverFlag = true;
         }
     }
 
