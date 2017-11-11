@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Trick : MonoBehaviour
 {
@@ -66,6 +67,7 @@ public class Trick : MonoBehaviour
         {
             Debug.Log("ゲームオーバーフラグ");
             GameOverFlag = true;
+            SceneManager.LoadScene("GameOver");
         }
     }
 
