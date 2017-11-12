@@ -65,9 +65,15 @@ public class Trick : MonoBehaviour
         //ストーカーに当たればゲームオーバー
         else if(other.gameObject.tag=="Stalker")
         {
-            Debug.Log("ゲームオーバーフラグ");
+            //Debug.Log("ゲームオーバーフラグ");
             GameOverFlag = true;
             SceneManager.LoadScene("GameOver");
+        }
+        //ゲームクリアオブジェクトに当たればゲームクリア
+        else if(other.gameObject.tag=="GameClear")
+        {
+            Debug.Log("ゲームクリア");
+            SceneManager.LoadScene("GameClear");
         }
     }
 
