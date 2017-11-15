@@ -15,9 +15,7 @@ public class Title : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        
-        TitleBGM.Play();
-
+        //キーが押されると画面遷移
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("Explanation");
