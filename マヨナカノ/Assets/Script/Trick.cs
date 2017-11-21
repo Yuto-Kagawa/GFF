@@ -6,18 +6,20 @@ using UnityEngine.SceneManagement;
 public class Trick : MonoBehaviour
 {
     Vector3 PlayerPos;              //主人公の現在の位置を入れる変数
+    public Firend firend;           //Friendクラスから継承    
     public AudioSource EerieSound;  //不気味な音
     int SoundFagCount;              //音を流すためのカウント(1の時は流す、それ以外は流さない)
     bool X_Flag;                    //物体Xを移動させるかどうか
-    public X_Move X;
+    public X_Move X;                //X_Moveクラスから継承
     int FlashLightDeleteTime;       //懐中電灯の光を消してる時間
     public Trick_Light FlashLight;  //Trick_LightクラスのGameObject FlashLightを継承
-    public Stalker SK;
+    public Stalker SK;              //Stalkerクラスから継承
+    bool GameOverFlag;              //ゲームオーバーするかどうか
 
-    bool GameOverFlag;
     // Use this for initialization
     void Start ()
     {
+        //初期化
         EerieSound = GetComponent<AudioSource>();//音を取得
         SoundFagCount = 0;
         X_Flag=false;
@@ -33,6 +35,15 @@ public class Trick : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        //主人公と友人の当たり判定を行う
+        //当たれば友人は停止
+        //当たらなければ主人公に対して行動（ホーミング）を行う
+        if(other.gameObject.tag=="Friend")
+        {
+            Debug.Log("友人ホーミングフラグ変更");
+            firend.HomingFlag = true;
+        }
+
         //仕掛け1
         //不気味な音を流す
         if (other.gameObject.tag == "Trick_EerieSound")   //タグ"Trick_EerieSound"に当たれば

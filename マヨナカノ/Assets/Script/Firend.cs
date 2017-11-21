@@ -4,22 +4,36 @@ using UnityEngine;
 
 public class Firend : MonoBehaviour
 {
-    public new Trick_Light light;
+    public new Trick_Light light;//Trick_Lightクラスのから継承
+    public bool HomingFlag;//行動を行うかどうか
+    float speed;//友人の行動の速さ
+    public Rigidbody rb;
 
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        HomingFlag = false;
+        speed = 2.0f;
+        rb = GetComponent<Rigidbody>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        GameObject player = GameObject.Find("Player");//ターゲットとなるオブジェクト
-        float speed = 2.0f;//速さ
-        float step = Time.deltaTime * speed;//
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);//Vector3.MoveTowards:二点間の特定の位置を返す
-                                                                                                      //　　　　　　　　　　　（主人公と友人）
+        if(HomingFlag==true)
+        {
+           Debug.Log("友人ストップ");
+           rb.velocity= Vector3.zero;
+           rb.isKinematic = true;
+        }
+        else
+        {
+            GameObject player = GameObject.Find("Player");//ターゲットとなるオブジェクト        
+            float step = Time.deltaTime * speed;
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);//Vector3.MoveTowards:二点間の特定の位置を返す                                        
+                                                                                                          //　　　　　　　　　　　（主人公と友人）
+        }
+ 
         //友人の消去（懐中電灯の光が消えたとき）
         //Trick_Light.csのFlashLightFlagの状態を見る
         if(light.FlashLightFlag==true)
