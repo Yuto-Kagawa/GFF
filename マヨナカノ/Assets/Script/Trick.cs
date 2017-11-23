@@ -14,7 +14,10 @@ public class Trick : MonoBehaviour
     int FlashLightDeleteTime;       //懐中電灯の光を消してる時間
     public Trick_Light FlashLight;  //Trick_LightクラスのGameObject FlashLightを継承
     public Stalker SK;              //Stalkerクラスから継承
-    bool GameOverFlag;              //ゲームオーバーするかどうか
+    public bool GameOverFlag;       //ゲームオーバーするかどうか
+    public bool GameClearFlag;      //ゲームクリアするかどうか 
+
+    SceneChange scenechange;
 
     // Use this for initialization
     void Start ()
@@ -24,7 +27,8 @@ public class Trick : MonoBehaviour
         SoundFagCount = 0;
         X_Flag=false;
         FlashLightDeleteTime = 0;
-        GameOverFlag = false;
+        //GameOverFlag = false;
+        //GameClearFlag = false;
     }
 	
 	// Update is called once per frame
@@ -76,15 +80,16 @@ public class Trick : MonoBehaviour
         //ストーカーに当たればゲームオーバー
         else if(other.gameObject.tag=="Stalker")
         {
-            //Debug.Log("ゲームオーバーフラグ");
+          //  Debug.Log("ゲームオーバーフラグ");
             GameOverFlag = true;
-            SceneManager.LoadScene("GameOver");
+           // SceneManager.LoadScene("GameOver");
         }
         //ゲームクリアオブジェクトに当たればゲームクリア
         else if(other.gameObject.tag=="GameClear")
         {
-            Debug.Log("ゲームクリア");
-            SceneManager.LoadScene("GameClear");
+             Debug.Log("ゲームクリア");
+            //SceneManager.LoadScene("GameClear");
+            GameClearFlag = true;
         }
     }
 

@@ -140,7 +140,6 @@
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\WaypointProgressTracker.cs" />
     <Compile Include="Assets\Script\Explanation.cs" />
     <Compile Include="Assets\Script\Firend.cs" />
-    <Compile Include="Assets\Script\FriendController.cs" />
     <Compile Include="Assets\Script\ManagerScript\AudioManager.cs" />
     <Compile Include="Assets\Script\ManagerScript\BGMManager.cs" />
     <Compile Include="Assets\Script\ManagerScript\FadeManager.cs" />

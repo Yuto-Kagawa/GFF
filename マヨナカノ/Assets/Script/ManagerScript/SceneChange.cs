@@ -4,18 +4,27 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour {
 
-    //public Timer time;
 	//次のシーンの名前
+    //一部以外はnextSceneで遷移を行う
 	public  string nextScene;
+
+    //リザルトが2種類あるため
+    //nextGameClear(メイン→ゲームクリア)とnextGameOver(メイン→ゲームオーバー)
+    public string nextGameClear;
+    public string nextGameOver;
+
+
     // Use this for initialization
     private static float margin = 2.0f;
 	//遷移したかどうかを保存する変数
 	bool Moved = false;
 
-	void Start ()
+    public Trick trick; //トリッククラスから参照
+
+    void Start ()
     {
-      //  AudioManager.Instance.PlayBGM("");
-       // AudioManager.Instance.PlaySE("");
+        //  AudioManager.Instance.PlayBGM("");
+        // AudioManager.Instance.PlaySE("");
         //nextScene = null;
     }
 	
@@ -30,32 +39,39 @@ public class SceneChange : MonoBehaviour {
                     /*次のシーンに遷移する方法*/
 				if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        ChangeScene();
+                        ChangeScene(nextScene);
                     }
                     break;
 				case "Explanation":
-				if (Input.GetMouseButton(0)) 
+				if (Input.GetKeyDown(KeyCode.Space)) 
 					{
-						ChangeScene ();
+						ChangeScene (nextScene);
 					}
 					break;
                 case "Main":
                     /*次のシーンに遷移する方法*/
-                    if (Input.GetMouseButton(0))
+                    //メインからクリアへ
+                    if (trick.GameClearFlag == true)
                     {
-                        ChangeScene();
+                        ChangeScene(nextGameClear);
+                    }
+                    //メインからゲームオーバーへ
+                    if (trick.GameOverFlag == true)
+                    {
+                        ChangeScene(nextGameOver);
                     }
                     break;
                 case "Gamever":
-				if (Input.GetMouseButtonUp(0))
+                    if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        ChangeScene();
+                        //Debug.Log("ゲームクリア");
+                        ChangeScene(nextScene);
                     }
                     break;
                 case "GameClear":
-                    if (Input.GetMouseButtonUp(0))
+                    if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        ChangeScene();
+                        ChangeScene(nextScene);
                     }
                     break;
             }
@@ -67,6 +83,7 @@ public class SceneChange : MonoBehaviour {
             //Debug.Log(" null or NotNull:::" + nextScene);
             Moved = false;
         }
+     
         /*	if ((nextScene != null) && (Moved == false))
             {
                 Debug.Log ("nextScene name:::" + nextScene);
@@ -84,8 +101,9 @@ public class SceneChange : MonoBehaviour {
                 Moved = false;
             }*/
     }
-    public void ChangeScene() {
-		FadeManager.Instance.LoadLevel(nextScene, 1.0f);
-            Moved = true;        
+    public void ChangeScene(string next) {
+		FadeManager.Instance.LoadLevel(next, 1.0f);
+        Moved = true;        
     }
+   
 }

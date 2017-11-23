@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Stalker : MonoBehaviour
 {
-    GameObject SK;
     public bool StalkerFlag;
 
 	// Use this for initialization
@@ -21,7 +20,7 @@ public class Stalker : MonoBehaviour
         if (StalkerFlag == true)
         {
             //Debug.Log("ストーカー表示");
-            float speed = 2.0f;//速さ
+            float speed = 5.0f;//速さ
             float step = Time.deltaTime * speed;//
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);//Vector3.MoveTowards:二点間の特定の位置を返す
         }
