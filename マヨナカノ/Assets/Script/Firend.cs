@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Firend : MonoBehaviour
 {
-    public new Trick_Light light;//Trick_Lightクラスのから継承
-    public bool HomingFlag;//行動を行うかどうか
-    float speed;//友人の行動の速さ
-    public Rigidbody rb;
+    public new Trick_Light light;//Trick_Lightクラスのから参照
+                                 //懐中電灯の光を消すと同時に友人を消すため
+    public bool HomingFlag;             //行動を行うかどうか
+    float speed;                 //友人の行動の速さ
+    public Rigidbody rb;         //Rigidbodyをとる
 
     // Use this for initialization
     void Start ()

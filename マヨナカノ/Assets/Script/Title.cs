@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class Title : MonoBehaviour
 {
     public AudioSource TitleBGM;  //BGM
-                                    // Use this for initialization
+                                   
+    // Use this for initialization
     void Start ()
     {
         TitleBGM = gameObject.GetComponent<AudioSource>();//音を取得
@@ -15,11 +16,6 @@ public class Title : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        //キーが押されると画面遷移
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("Explanation");
-        }
-        
+        TitleBGM.PlayOneShot(TitleBGM.clip);//不気味な音を再生
     }
 }

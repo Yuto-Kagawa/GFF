@@ -138,7 +138,6 @@
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\TimedObjectDestructor.cs" />
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\Material\Standard Assets\Standard Assets\Utility\WaypointProgressTracker.cs" />
-    <Compile Include="Assets\Script\Explanation.cs" />
     <Compile Include="Assets\Script\Firend.cs" />
     <Compile Include="Assets\Script\ManagerScript\AudioManager.cs" />
     <Compile Include="Assets\Script\ManagerScript\BGMManager.cs" />
@@ -149,7 +148,6 @@
     <Compile Include="Assets\Script\Stalker.cs" />
     <Compile Include="Assets\Script\Title.cs" />
     <Compile Include="Assets\Script\Trick.cs" />
-    <Compile Include="Assets\Script\Trick_EerieSound.cs" />
     <Compile Include="Assets\Script\Trick_Light.cs" />
     <Compile Include="Assets\Script\X_Move.cs" />
   </ItemGroup>

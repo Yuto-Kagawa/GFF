@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trick_Light : MonoBehaviour
 {
     public float FlashLightDeleteTime;   //懐中電灯の光を消してる時間
-    public GameObject FlashLight;
+    public GameObject FlashLight;       //懐中電灯のオブジェクトをとるため
     public bool FlashLightFlag;         //懐中電灯の光を付けるかどうか
 
     // Use this for initialization
