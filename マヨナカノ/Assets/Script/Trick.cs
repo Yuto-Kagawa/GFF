@@ -13,6 +13,8 @@ public class Trick : MonoBehaviour
     public bool GameOverFlag;       //ゲームオーバーするかどうか
     public bool GameClearFlag;      //ゲームクリアするかどうか 
 
+    public bool HomingFlag;             //友人の行動を行うかどうか
+
     // Use this for initialization
     void Start ()
     {
@@ -33,15 +35,16 @@ public class Trick : MonoBehaviour
         //当たらなければ主人公に対して行動（ホーミング）を行う
         if(other.gameObject.tag=="Friend")
         {
-            Debug.Log("友人ホーミングフラグ変更");
-            firend.HomingFlag = true;
+           Debug.Log("友人ホーミングフラグ変更");
+           HomingFlag = true;
+           //gameObject.transform.GetComponent<GameObject>().constraints = RigidbodyConstraints.FreezeAll;
         }
 
         //仕掛け1
         //不気味な音を流す
         if (other.gameObject.tag == "Trick_EerieSound")   //タグ"Trick_EerieSound"に当たれば
         {
-            Debug.Log("不気味な音を流す");
+            //Debug.Log("不気味な音を流す");
             EerieSound.PlayOneShot(EerieSound.clip);//不気味な音を再生
         }
 

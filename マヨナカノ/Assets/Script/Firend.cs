@@ -6,14 +6,15 @@ public class Firend : MonoBehaviour
 {
     public new Trick_Light light;//Trick_Lightクラスのから参照
                                  //懐中電灯の光を消すと同時に友人を消すため
-    public bool HomingFlag;             //行動を行うかどうか
     float speed;                 //友人の行動の速さ
     public Rigidbody rb;         //Rigidbodyをとる
+
+    public Trick trick;
 
     // Use this for initialization
     void Start ()
     {
-        HomingFlag = false;
+       // trick.HomingFlag = false;
         speed = 2.0f;
         rb = GetComponent<Rigidbody>();
     }
@@ -21,7 +22,7 @@ public class Firend : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(HomingFlag==true)
+        if(trick.HomingFlag == true)
         {
            Debug.Log("友人ストップ");
            rb.velocity= Vector3.zero;
