@@ -13,7 +13,7 @@ public class Trick : MonoBehaviour
     public bool GameOverFlag;       //ゲームオーバーするかどうか
     public bool GameClearFlag;      //ゲームクリアするかどうか 
 
-    public bool HomingFlag;             //友人の行動を行うかどうか
+    public bool HomingFlag;         //友人の行動を行うかどうか
 
     // Use this for initialization
     void Start ()
@@ -28,17 +28,36 @@ public class Trick : MonoBehaviour
 
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name=="Friend")
+        {
+            //主人公と友人の当たり判定を行う
+            //当たれば友人は停止
+            //当たらなければ主人公に対して行動（ホーミング）を行う
+            Debug.Log("友人ホーミングフラグ変更");
+            HomingFlag = true;
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.name=="Friend")
+        {
+            HomingFlag = false;
+        }   
+    }
+
     void OnTriggerEnter(Collider other)
     {
         //主人公と友人の当たり判定を行う
         //当たれば友人は停止
         //当たらなければ主人公に対して行動（ホーミング）を行う
-        if(other.gameObject.tag=="Friend")
-        {
-           Debug.Log("友人ホーミングフラグ変更");
-           HomingFlag = true;
-           //gameObject.transform.GetComponent<GameObject>().constraints = RigidbodyConstraints.FreezeAll;
-        }
+        //if(other.gameObject.tag=="Friend")
+        //{
+        //   Debug.Log("友人ホーミングフラグ変更");
+        //   HomingFlag = true;
+        //}
 
         //仕掛け1
         //不気味な音を流す

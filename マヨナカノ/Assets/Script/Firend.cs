@@ -25,10 +25,9 @@ public class Firend : MonoBehaviour
     {
         if(trick.HomingFlag == true)
         {
-           Debug.Log("友人ストップ");
+           //Debug.Log("友人ストップ");
            rb.velocity= Vector3.zero;
            rb.isKinematic = true;
-           trick.HomingFlag = false;
         }
         else
         {
@@ -36,7 +35,7 @@ public class Firend : MonoBehaviour
             float step = Time.deltaTime * speed;
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);//Vector3.MoveTowards:二点間の特定の位置を返す                                        
                                                                                                           //　　　　　　　　　　　（主人公と友人）
-            transform.LookAt(target);
+            transform.LookAt(target);//主人公に向ける
         }
  
         //友人の消去（懐中電灯の光が消えたとき）
